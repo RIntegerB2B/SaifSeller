@@ -52,7 +52,6 @@ export class ViewProductsComponent implements OnInit {
       this.snackBar.open(this.message, this.action, {
         duration: 2000,
       });
-      this.router.navigate(['product/viewproducts']);
     }, err => {
       console.log(err);
     });

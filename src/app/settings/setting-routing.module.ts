@@ -4,6 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 
 import {BannersComponent} from './banners/banners.component';
 import {ViewBannersComponent} from './view-banners/view-banners.component';
+import {AdsComponent} from './ads/ads.component';
+import {ViewAdsComponent} from './view-ads/view-ads.component';
 
 const routes: Routes = [{
   path: 'addbanners',
@@ -12,6 +14,14 @@ const routes: Routes = [{
 {
   path: 'viewbanners',
   component: ViewBannersComponent
+},
+{
+  path: 'addads',
+  component: AdsComponent
+},
+{
+  path: 'viewads',
+  component: ViewAdsComponent
 }
 ];
 

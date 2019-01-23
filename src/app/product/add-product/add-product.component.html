@@ -84,14 +84,17 @@
             </div>
           </div> -->
           <div class="form-group col-md-12">
-            <div class="textContainer">
-              <select #selectElem1 (change)="selectedCategory(selectElem1.value)" class="hideLabel form-control">
-                <option> Select the Category</option>
-                <option *ngFor="let data of mainCategoryModel" [value]="data._id">
-                  {{data.mainCategoryName}}
-                </option>
-              </select>
-            </div>
+          <mat-form-field>
+              <mat-select placeholder="Category" [formControl]="category" multiple>
+               <!--  <mat-select-trigger>
+                  {{category.value ? category.value[0] : ''}}
+                  <span *ngIf="category.value?.length > 1" class="example-additional-selection">
+                    (+{{category.value.length - 1}} {{category.value?.length === 2 ? 'other' : 'others'}})
+                  </span>
+                </mat-select-trigger> -->
+                <mat-option *ngFor="let data of mainCategoryModel" [value]="data.mainCategoryName">{{data.mainCategoryName}}</mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
           <div class="form-group col-md-12">
             <button mat-raised-button color="accent" type="submit" (click)="addProducts()" [disabled]='!productForm.valid'>Save</button>

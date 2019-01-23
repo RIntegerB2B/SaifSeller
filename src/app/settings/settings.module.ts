@@ -35,10 +35,14 @@ import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 import {SettingsService} from './settings.service';
 import {SettingRoutingModule} from './setting-routing.module';
 import { ViewBannersComponent } from './view-banners/view-banners.component';
+import { AdsComponent } from './ads/ads.component';
+import { ViewAdsComponent } from './view-ads/view-ads.component';
 @NgModule({
   declarations: [
     BannersComponent,
-    ViewBannersComponent
+    ViewBannersComponent,
+    AdsComponent,
+    ViewAdsComponent
   ],
   imports: [
     HttpClientModule,

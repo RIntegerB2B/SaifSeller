@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators , FormControl} from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
 import { MatIconModule } from '@angular/material/icon';
@@ -33,7 +33,7 @@ export class AddProductComponent implements OnInit {
   fileLength;
   fileToUpload;
   urls = new Array<string>();
-
+  category = new FormControl();
   reader: FileReader = new FileReader();
   constructor(private fb: FormBuilder, private router: Router, private productService: ProductService, private snackBar: MatSnackBar) { }
 
@@ -54,7 +54,8 @@ export class AddProductComponent implements OnInit {
       color: [''],
       styleCode: [''],
       skuCode: [''],
-      skuCodeValue: ['']
+      skuCodeValue: [''],
+      category: ['']
     });
   }
   handleFileInput(images: any) {
@@ -105,6 +106,7 @@ this.showSkuError = true;
 
   }
   addProducts() {
+    console.log(this.category.value);
     this.message = 'Product added successfully';
     this.productModel = new Product();
     this.productModel.productTitle = this.productForm.controls.productTitle.value;
@@ -115,6 +117,7 @@ this.showSkuError = true;
     this.productModel.color = this.productForm.controls.color.value;
     this.productModel.styleCode = this.productForm.controls.styleCode.value;
     this.productModel.skuCode = this.productForm.controls.skuCode.value;
+    this.productModel.mainCategory = this.category.value;
     this.productService.addProduct(this.productModel).subscribe(data => {
       this.productId = data._id;
       /* this.addProductToMoq(); */
