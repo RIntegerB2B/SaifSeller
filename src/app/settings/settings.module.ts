@@ -37,12 +37,16 @@ import {SettingRoutingModule} from './setting-routing.module';
 import { ViewBannersComponent } from './view-banners/view-banners.component';
 import { AdsComponent } from './ads/ads.component';
 import { ViewAdsComponent } from './view-ads/view-ads.component';
+import { PromotionsComponent } from './promotions/promotions.component';
+import { ViewPromotionsComponent } from './view-promotions/view-promotions.component';
 @NgModule({
   declarations: [
     BannersComponent,
     ViewBannersComponent,
     AdsComponent,
-    ViewAdsComponent
+    ViewAdsComponent,
+    PromotionsComponent,
+    ViewPromotionsComponent
   ],
   imports: [
     HttpClientModule,

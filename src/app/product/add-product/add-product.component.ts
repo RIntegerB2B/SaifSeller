@@ -35,6 +35,7 @@ export class AddProductComponent implements OnInit {
   urls = new Array<string>();
   category = new FormControl();
   reader: FileReader = new FileReader();
+
   constructor(private fb: FormBuilder, private router: Router, private productService: ProductService, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
@@ -106,7 +107,6 @@ this.showSkuError = true;
 
   }
   addProducts() {
-    console.log(this.category.value);
     this.message = 'Product added successfully';
     this.productModel = new Product();
     this.productModel.productTitle = this.productForm.controls.productTitle.value;

@@ -8,6 +8,7 @@ import { MatSnackBar } from '@angular/material';
 import { Banner } from './banner.model';
 import { SettingsService } from '../settings.service';
 import { BannerImageData } from './bannerImageData.model';
+import {priceValue} from '../../shared/validation/price-validation';
 
 @Component({
   selector: 'app-banners',
@@ -39,7 +40,7 @@ export class BannersComponent implements OnInit {
     this.bannerForm = this.fb.group({
       id: [''],
       bannerDescription: [''],
-      position: [''],
+      position: ['', priceValue],
     });
   }
   getBannersDetails() {

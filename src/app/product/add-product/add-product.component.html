@@ -92,7 +92,7 @@
                     (+{{category.value.length - 1}} {{category.value?.length === 2 ? 'other' : 'others'}})
                   </span>
                 </mat-select-trigger> -->
-                <mat-option *ngFor="let data of mainCategoryModel" [value]="data.mainCategoryName">{{data.mainCategoryName}}</mat-option>
+                <mat-option *ngFor="let data of mainCategoryModel" [value]="data._id">{{data.mainCategoryName}}</mat-option>
               </mat-select>
             </mat-form-field>
           </div>

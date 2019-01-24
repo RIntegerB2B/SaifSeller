@@ -8,6 +8,7 @@ import { MatSnackBar } from '@angular/material';
 import { Ads } from './ads.model';
 import { SettingsService } from '../settings.service';
 import {AdsImageData} from './adsImageData.model';
+import {priceValue} from '../../shared/validation/price-validation';
 @Component({
   selector: 'app-ads',
   templateUrl: './ads.component.html',
@@ -37,7 +38,7 @@ export class AdsComponent implements OnInit {
   createForm() {
     this.adsForm = this.fb.group({
       id: [''],
-      position: [''],
+      position: ['', priceValue ],
     });
   }
   getAdsDetails() {

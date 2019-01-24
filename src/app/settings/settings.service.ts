@@ -7,6 +7,7 @@ import { AppSetting } from '../config/appSetting';
 import {Banner} from './banners/banner.model';
 import {BannerImageData} from './banners/bannerImageData.model';
 import {Ads} from './ads/ads.model';
+import {Promotions} from './promotions/promotions.model';
 
 @Injectable({
   providedIn: 'root'
@@ -49,5 +50,23 @@ export class SettingsService {
     const deleteUrl = 'deleteads/';
     const url: string = this.serviceUrl + deleteUrl + data._id ;
     return this.httpClient.delete<Ads>(url);
+  }
+
+  // promotions
+  addPromotions(data: Promotions): Observable<any> {
+    const categoryUrl = 'promotions';
+    const url: string = this.serviceUrl + categoryUrl;
+    return this.httpClient.post<Promotions>(url, data);
+  }
+
+  getPromotions(): Observable<any> {
+    const categoryUrl = 'promotions';
+    const url: string = this.serviceUrl + categoryUrl;
+    return this.httpClient.get<Promotions>(url);
+  }
+  deletePromotions(data): Observable<any> {
+    const deleteUrl = 'deletepromotions/';
+    const url: string = this.serviceUrl + deleteUrl + data._id ;
+    return this.httpClient.delete<Promotions>(url);
   }
 }
