@@ -15,6 +15,7 @@ export interface PeriodicElement {
   styleCode: string;
   skuCode: string;
   view: string;
+  edit: string;
   delete: string;
 }
 @Component({
@@ -25,7 +26,7 @@ export interface PeriodicElement {
 export class ViewProductsComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  displayedColumns: string[] = ['primeImage', 'productName', 'productTitle', 'styleCode', 'skuCode', 'view', 'delete'];
+  displayedColumns: string[] = ['primeImage', 'productName', 'productTitle', 'styleCode', 'skuCode', 'view', 'edit', 'delete'];
   productModel: Product[];
   productData;
   message;
@@ -100,5 +101,8 @@ export class ViewProductsComponent implements OnInit {
   }
   viewProduct(product) {
     this.router.navigate(['/product/productdetail', product._id ]);
+  }
+  editProduct(element) {
+    this.router.navigate(['/product/editproduct', element._id ]);
   }
 }

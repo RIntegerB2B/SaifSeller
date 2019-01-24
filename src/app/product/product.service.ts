@@ -63,4 +63,10 @@ getRelatedProducts(data): Observable<any> {
   const url: string = this.serviceUrl + productUrl + data.styleCode + productUrl1 + data._id;
   return this.httpClient.get<Product>(url);
 }
+
+updateProduct(data): Observable<any> {
+  const addUrl = 'product/';
+  const url: string = this.serviceUrl + addUrl + data._id ;
+  return this.httpClient.put<boolean>(url, data);
+}
 }
