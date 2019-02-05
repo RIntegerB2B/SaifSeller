@@ -7,37 +7,39 @@ import {MatSnackBar} from '@angular/material';
 
 import { CategoryService } from '../category.service';
 import { SuperCategory } from '../super-category/superCategory.model';
-import { MainCategory } from './mainCategory.model';
-
+import { MainCategory } from '../../category/main-category/mainCategory.model';
+import {SubCategory} from './sub-category.model';
 
 export interface PeriodicElement {
   categoryName: string;
   description: string;
 
 }
+
 @Component({
-  selector: 'app-main-category',
-  templateUrl: './main-category.component.html',
-  styleUrls: ['./main-category.component.css']
+  selector: 'app-sub-category',
+  templateUrl: './sub-category.component.html',
+  styleUrls: ['./sub-category.component.css']
 })
-export class MainCategoryComponent implements OnInit {
+export class SubCategoryComponent implements OnInit {
   superCategoryModel: SuperCategory;
   mainCategoryModel: MainCategory;
-  mainCategoryForm: FormGroup;
+  subCategoryModel: SubCategory;
+  subCategoryForm: FormGroup;
   headerCatSelectedData;
+  selectedMainCategory;
   mainCategoryData;
   headCatSelected;
   message;
   action;
   displayedColumns: string[] = ['categoryName', 'description', 'edit', 'delete'];
   constructor(private fb: FormBuilder, private router: Router, private categoryService: CategoryService, private snackBar: MatSnackBar) { }
-
   ngOnInit() {
     this.createForm();
     this.getSuperCategory();
   }
   createForm() {
-    this.mainCategoryForm = this.fb.group({
+    this.subCategoryForm = this.fb.group({
       id: [''],
       categoryName: ['', Validators.required],
       description: ['']
@@ -50,40 +52,32 @@ export class MainCategoryComponent implements OnInit {
   }
   setNewUser(id) {
     this.headerCatSelectedData = id;
-  }
-  addMainCategory() {
-    this.message = 'Main Category Added';
-    this.mainCategoryModel = new MainCategory(
-      this.mainCategoryForm.controls.categoryName.value,
-      this.mainCategoryForm.controls.description.value,
-    );
-    this.mainCategoryModel._id = this.headerCatSelectedData;
-    this.categoryService.addMainCategory(this.mainCategoryModel).subscribe(data => {
+    this.categoryService.getMainCategory(id).subscribe(data => {
+      this.mainCategoryModel = data.mainCategory;
     }, error => {
       console.log(error);
     });
-    this.snackBar.open(this.message, this.action, {
-      duration: 3000,
-    });
-    this.mainCategoryForm.reset();
+  }
+  selectMainCategory(id) {
+  this.selectedMainCategory = id;
   }
   getCategory(id) {
     this.headCatSelected = id;
     this.categoryService.getMainCategory(id).subscribe(data => {
-      this.mainCategoryData = new MatTableDataSource<PeriodicElement>(data.mainCategory);
+      this.mainCategoryModel = data.mainCategory;
     }, error => {
       console.log(error);
     });
   }
-  deleteMainCategory(elem) {
-    this.message = 'Main Category deleted';
-this.categoryService.deleteMainCategory(this.headCatSelected, elem).subscribe(data => {
-  this.snackBar.open(this.message, this.action, {
-    duration: 3000,
-  });
-  this.mainCategoryData = new MatTableDataSource<PeriodicElement>(data);
-}, error => {
-  console.log(error);
-});
+  addSubCategory() {
+    this.subCategoryModel = new SubCategory();
+    this.subCategoryModel.subCategoryName = this.subCategoryForm.controls.categoryName.value;
+    this.subCategoryModel.subCategoryDescription = this.subCategoryForm.controls.description.value;
+    this.categoryService.addSubCategory(this.subCategoryModel, this.headerCatSelectedData, this.selectedMainCategory).subscribe(data => {
+      console.log(data);
+    });
+  }
+  getMainCategory(id) {
+
   }
 }

@@ -32,7 +32,7 @@ export class SuperCategoryComponent implements OnInit {
     this.superCategoryForm = this.fb.group({
       id: [''],
       categoryName: ['', Validators.required],
-      description: ['', Validators.required]
+      description: ['']
     });
   }
   getSuperCategory() {

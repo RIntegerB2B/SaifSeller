@@ -6,6 +6,7 @@ import { AppSetting } from '../config/appSetting';
 
 import {SuperCategory} from './super-category/superCategory.model';
 import {MainCategory} from './main-category/mainCategory.model';
+import {SubCategory} from './sub-category/sub-category.model';
 
 @Injectable({
   providedIn: 'root'
@@ -47,5 +48,15 @@ getSuperCategory(): Observable<any> {
     const deleteUrl1 = '/mainCategory/';
     const url: string = this.serviceUrl + deleteUrl + id + deleteUrl1 + data._id;
     return this.httpClient.delete<MainCategory>(url);
+  }
+
+  // sub category
+
+  /* subCategory/:superid/add/:mainid */
+  addSubCategory(data: SubCategory, superId, mainid): Observable<any> {
+    const Caturl = 'subCategory/';
+    const CatUrl1 = '/add/';
+    const url: string = this.serviceUrl + Caturl + superId + CatUrl1 + mainid ;
+    return this.httpClient.put<SubCategory>(url, data);
   }
 }

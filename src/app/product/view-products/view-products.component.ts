@@ -32,12 +32,12 @@ export class ViewProductsComponent implements OnInit {
   message;
   action;
 
-  public pageSize = 10;
+  /* public pageSize = 10;
   public currentPage = 0;
   public totalSize = 0;
   dataSource: any = [];
   array: any;
-  temp: any = [];
+  temp: any = []; */
   constructor(private fb: FormBuilder, private router: Router, private productService: ProductService, private snackBar: MatSnackBar) { }
 
 
@@ -49,44 +49,12 @@ export class ViewProductsComponent implements OnInit {
       this.productData = new MatTableDataSource<PeriodicElement>(data);
       this.productData.sort = this.sort;
       this.productData.paginator = this.paginator;
-      this.array = data;
-        this.totalSize = this.array.length;
-        this.temp = data;
-        this.iterator();
     }, err => {
       console.log(err);
     });
   }
-  handlePage(e: any) {
-    this.currentPage = e.pageIndex;
-    this.pageSize = e.pageSize;
-    this.iterator();
-  }
-  iterator() {
-    const end = (this.currentPage + 1) * this.pageSize;
-    const start = this.currentPage * this.pageSize;
-    const part = this.array.slice(start, end);
-    this.dataSource = part;
-  }
-  updateFilter(event) {
-    const val = event.target.value.toLowerCase();
-    const filterCustomer = Object.keys(this.temp[0]);
-    filterCustomer.splice(filterCustomer.length - 1);
-
-    console.log(filterCustomer);
-    if (!filterCustomer.length) {
-      return;
-    }
-    const rows = this.temp.filter(function (d) {
-      for (let i = 0; i <= filterCustomer.length; i++) {
-        const column = filterCustomer[i];
-        console.log(d[column]);
-        if (d[column] && d[column].toString().toLowerCase().indexOf(val) > -1) {
-          return true;
-        }
-      }
-    });
-    this.productData = rows;
+  applyFilter(filterValue: string) {
+    this.productData.filter = filterValue.trim().toLowerCase();
   }
   deleteProduct(product) {
     this.message = 'Product deleted';

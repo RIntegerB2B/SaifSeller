@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import {SuperCategoryComponent} from './super-category/super-category.component';
 import {MainCategoryComponent} from './main-category/main-category.component';
+import {SubCategoryComponent} from './sub-category/sub-category.component';
 
 
 const routes: Routes = [{
@@ -12,6 +13,10 @@ const routes: Routes = [{
 {
   path: 'maincategory',
   component: MainCategoryComponent
+},
+{
+  path: 'subcategory',
+  component: SubCategoryComponent
 }
 ];
 

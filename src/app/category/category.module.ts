@@ -35,9 +35,10 @@ import {CategoryRoutingModule} from './category-routing.module';
 import {CategoryService} from './category.service';
 import { SuperCategoryComponent } from './super-category/super-category.component';
 import { MainCategoryComponent } from './main-category/main-category.component';
+import { SubCategoryComponent } from './sub-category/sub-category.component';
 
 @NgModule({
-  declarations: [SuperCategoryComponent, MainCategoryComponent],
+  declarations: [SuperCategoryComponent, MainCategoryComponent, SubCategoryComponent],
   imports: [
     HttpClientModule,
     CommonModule,
