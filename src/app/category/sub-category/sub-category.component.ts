@@ -25,9 +25,11 @@ export class SubCategoryComponent implements OnInit {
   superCategoryModel: SuperCategory;
   mainCategoryModel: MainCategory;
   subCategoryModel: SubCategory;
+  subCategoryData;
   subCategoryForm: FormGroup;
   headerCatSelectedData;
   selectedMainCategory;
+  getMainCategoryId;
   mainCategoryData;
   headCatSelected;
   message;
@@ -61,6 +63,18 @@ export class SubCategoryComponent implements OnInit {
   selectMainCategory(id) {
   this.selectedMainCategory = id;
   }
+  addSubCategory() {
+    this.message = 'Sub Category added successfully';
+    this.subCategoryModel = new SubCategory();
+    this.subCategoryModel.subCategoryName = this.subCategoryForm.controls.categoryName.value;
+    this.subCategoryModel.subCategoryDescription = this.subCategoryForm.controls.description.value;
+    this.categoryService.addSubCategory(this.subCategoryModel, this.headerCatSelectedData, this.selectedMainCategory).subscribe(data => {
+      console.log(data);
+      this.snackBar.open(this.message, this.action, {
+        duration: 3000,
+      });
+    });
+  }
   getCategory(id) {
     this.headCatSelected = id;
     this.categoryService.getMainCategory(id).subscribe(data => {
@@ -69,15 +83,19 @@ export class SubCategoryComponent implements OnInit {
       console.log(error);
     });
   }
-  addSubCategory() {
-    this.subCategoryModel = new SubCategory();
-    this.subCategoryModel.subCategoryName = this.subCategoryForm.controls.categoryName.value;
-    this.subCategoryModel.subCategoryDescription = this.subCategoryForm.controls.description.value;
-    this.categoryService.addSubCategory(this.subCategoryModel, this.headerCatSelectedData, this.selectedMainCategory).subscribe(data => {
-      console.log(data);
-    });
+  getSubCategory(id) {
+this.getMainCategoryId = id;
+this.categoryService.getSubCategory(this.headCatSelected, this.getMainCategoryId).subscribe(data => {
+  this.subCategoryData = new MatTableDataSource<PeriodicElement>(data.subCategory);
+}, err => {
+  console.log(err);
+});
   }
-  getMainCategory(id) {
-
-  }
+  deleteSubCategory(element) {
+this.categoryService.deleteSubCategory(this.headCatSelected, this.getMainCategoryId, element).subscribe(data => {
+  this.subCategoryData = new MatTableDataSource<PeriodicElement>(data.subCategory);
+}, err => {
+  console.log(err);
+});
+ }
 }

@@ -5,6 +5,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { AppSetting } from '../config/appSetting';
 
 import {Product} from './add-product/product.model';
+import {SuperCategory} from '../category/super-category/superCategory.model';
 import {MainCategory} from '../category/main-category/mainCategory.model';
 import {MOQ} from '../moq/create-moq/moq.model';
 
@@ -19,6 +20,11 @@ export class ProductService {
     const categoryUrl = 'moqs';
     const url: string = this.serviceUrl + categoryUrl;
     return this.httpClient.get<MOQ>(url);
+  }
+  showAllSuperCategory(): Observable<any> {
+    const categoryUrl = 'categoryDetails';
+    const url: string = this.serviceUrl + categoryUrl;
+    return this.httpClient.get<SuperCategory>(url);
   }
   showAllMainCategory(): Observable<any> {
     const categoryUrl = 'showMainCategory';
@@ -67,6 +73,6 @@ getRelatedProducts(data): Observable<any> {
 updateProduct(data): Observable<any> {
   const addUrl = 'product/';
   const url: string = this.serviceUrl + addUrl + data._id ;
-  return this.httpClient.put<boolean>(url, data);
+  return this.httpClient.put<Product>(url, data);
 }
 }

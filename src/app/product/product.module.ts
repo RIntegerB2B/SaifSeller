@@ -29,7 +29,8 @@ import {
   MatNativeDateModule,
   MatPaginatorModule,
   MatTableModule,
-  MatSortModule
+  MatTabsModule,
+  MatSortModule,
 } from '@angular/material';
 import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 import {ProductRoutingModule} from './product-routing.module';
@@ -64,7 +65,9 @@ import { EditProductComponent } from './edit-product/edit-product.component';
     MatProgressSpinnerModule,
     MatPaginatorModule,
     MatTableModule,
-    MatSortModule
+    MatSortModule,
+    MatTabsModule,
+    MatRadioModule,
   ],
   providers:
    [

@@ -52,11 +52,25 @@ getSuperCategory(): Observable<any> {
 
   // sub category
 
-  /* subCategory/:superid/add/:mainid */
   addSubCategory(data: SubCategory, superId, mainid): Observable<any> {
     const Caturl = 'subCategory/';
     const CatUrl1 = '/add/';
     const url: string = this.serviceUrl + Caturl + superId + CatUrl1 + mainid ;
     return this.httpClient.put<SubCategory>(url, data);
+  }
+  getSubCategory(superId, mainId): Observable<any> {
+    const categoryUrl = 'category/';
+   const categoryUrl1 = '/mainCategory/';
+    const url: string = this.serviceUrl + categoryUrl + superId + categoryUrl1 + mainId;
+    return this.httpClient.get<SubCategory>(url);
+  }
+
+ /*  /category/:categoryId/mainCategory/:mainCategoryId/subCategory/:subCategoryId */
+  deleteSubCategory(superId, mainId, element): Observable<any> {
+    const deleteUrl = 'category/';
+    const deleteUrl1 = '/mainCategory/';
+    const deleteUrl2 = '/subCategory/';
+    const url: string = this.serviceUrl + deleteUrl + superId + deleteUrl1 + mainId + deleteUrl2 + element._id;
+    return this.httpClient.delete<SubCategory>(url);
   }
 }

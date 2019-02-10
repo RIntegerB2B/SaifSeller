@@ -36,7 +36,7 @@ export class EditProductComponent implements OnInit {
   }
   ngOnInit() {
     this.createForm();
-    this.getProductById();
+   /*  this.getProductById(); */
   }
   createForm() {
     this.editProductForm = this.fb.group({
@@ -53,7 +53,7 @@ export class EditProductComponent implements OnInit {
     });
   }
 
-  getProductById() {
+  /* getProductById() {
     this.productService.getProductById(this.productId).subscribe(data => {
       this.productModel = data;
       this.editProductForm.setValue({
@@ -72,7 +72,7 @@ export class EditProductComponent implements OnInit {
     }, err => {
       console.log(err);
     });
-  }
+  } */
   deleteProductImages(val) {
     this.productModel.productImageName.forEach(element => {
        if (element === val) {
@@ -97,7 +97,7 @@ export class EditProductComponent implements OnInit {
       this.editedProducts.push(imageName);
     });
    /*   */
-    this.editProductModel = new Product();
+  /*   this.editProductModel = new Product();
     this.editProductModel._id =  this.productId;
     this.editProductModel.productTitle = this.editProductForm.controls.productTitle.value;
     this.editProductModel.productName = this.editProductForm.controls.productName.value;
@@ -107,7 +107,7 @@ export class EditProductComponent implements OnInit {
     this.editProductModel.color = this.editProductForm.controls.color.value;
     this.editProductModel.styleCode = this.editProductForm.controls.styleCode.value;
     this.editProductModel.skuCode = this.editProductForm.controls.skuCode.value;
-    this.editProductModel.productImageName = this.editedProducts;
+    this.editProductModel.productImageName = this.editedProducts; */
 this.productService.updateProduct(this.editProductModel).subscribe(data => {
   this.snackBar.open(this.message, this.action, {
     duration: 3000,
