@@ -18,14 +18,14 @@ import {priceValue} from '../../shared/validation/price-validation';
 export class BannersComponent implements OnInit {
   bannerForm: FormGroup;
   bannerModel: Banner[];
-  imageNameFilter;
+  imageNameFilter: Banner[];
   showImageNameError = false;
-  message;
-  action;
+  message: string;
+  action: string;
 
 
-  fileLength;
-  fileToUpload;
+  fileLength: number;
+  fileToUpload: any[];
   urls = new Array<string>();
 
   reader: FileReader = new FileReader();

@@ -6,9 +6,9 @@
       <div class="container-fluid">
         <div class="row rowBox">
           <div class="col-md-6 ">
-              <label>
-                <input type="file"  (change)="handleFileInput($event.target.files)" multiple>
-              </label>
+            <label>
+              <input type="file" (change)="handleFileInput($event.target.files)" multiple>
+            </label>
             <div class="alert alert-danger" *ngIf="imageError">
               <h4>Please Select the images</h4>
             </div>

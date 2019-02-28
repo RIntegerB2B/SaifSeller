@@ -34,7 +34,7 @@ export class SubCategoryComponent implements OnInit {
   headCatSelected;
   message;
   action;
-  displayedColumns: string[] = ['categoryName', 'description', 'edit', 'delete'];
+  displayedColumns: string[] = ['categoryName', 'description', 'delete'];
   constructor(private fb: FormBuilder, private router: Router, private categoryService: CategoryService, private snackBar: MatSnackBar) { }
   ngOnInit() {
     this.createForm();

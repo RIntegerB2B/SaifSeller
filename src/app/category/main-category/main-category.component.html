@@ -1,6 +1,6 @@
 <div class="pageBoxLg ">
   <label class="pageBoxLg-label ">Main Category</label>
-  <form [formGroup]="mainCategoryForm" novalidate style="padding-top:60px" (ngSubmit)="addMainCategory()">
+  <form [formGroup]="mainCategoryForm" novalidate style="padding-top:60px" >
     <div class="container-fluid">
       <div class="row">
         <div class="form-group col-sm-12 col-md-2">
@@ -8,7 +8,7 @@
             <mat-form-field>
                 <mat-select #selectElem (selectionChange)="setNewUser(selectElem.value)" placeholder="Select super category">
                     <mat-option *ngFor="let category of superCategoryModel" [value]="category._id">
-                      {{category.categoryName | titlecase}}
+                      {{category.categoryName }}
                     </mat-option>
                   </mat-select>
             </mat-form-field>
@@ -17,9 +17,24 @@
           </div>
 
         </div>
-        <div class="form-group col-sm-12 col-md-4">
+        <div class="form-group col-md-2 col-sm-12">
+            <label>
+              <input type="file" (change)="handleFileInput($event.target.files)" >
+            </label>
+            <div class="alert alert-danger" *ngIf="imageError">
+                <h4>Please Select the image</h4>
+              </div>
+            <div class="row">
+              <div class="col-md-12 pb-2" *ngFor="let url of urls">
+                <mat-card>
+                  <img class="img-fluid" [src]="url" height="1080px" width="1080px" />
+                </mat-card>
+              </div>
+            </div>
+          </div>
+        <div class="form-group col-sm-12 col-md-3">
           <mat-form-field class="example-full-width">
-            <input matInput placeholder="Main Category Name" formControlName="categoryName" required #name>
+            <input matInput placeholder="Main Category Name" formControlName="categoryName" required #name (keyup)="categoryVerify(name.value)">
             <button mat-button matSuffix mat-icon-button aria-label="Main Category Name">
             </button>
             <mat-error *ngIf="mainCategoryForm.controls['categoryName'].errors?.required">
@@ -27,9 +42,14 @@
               <strong>required</strong>
             </mat-error>
           </mat-form-field>
+          <div *ngFor="let data of selectedmainCategoryModel"> 
+    <div *ngIf="data.mainCategoryNameError">
+                  <small style="color: red">Main Category Name already <strong>exists</strong></small>
+                </div>
+          </div>
 
         </div>
-        <div class="form-group col-sm-12 col-md-4">
+        <div class="form-group col-sm-12 col-md-3">
           <mat-form-field class="example-full-width">
             <input matInput placeholder="Main Category Description" formControlName="description"  #desc>
             <button mat-button matSuffix mat-icon-button aria-label="Main Category Description">
@@ -40,8 +60,8 @@
             </mat-error>
           </mat-form-field>
         </div>
-        <div class="form-group col-sm-12 col-md-2">
-          <button mat-raised-button color="accent" type="submit"  [disabled]='!mainCategoryForm.valid'>Save</button>
+        <div class="form-group col-sm-12 col-md-2" >
+          <button mat-raised-button color="accent" type="submit" (click)="addMainCategory()"  [disabled]='duplicationError  || !mainCategoryForm.valid'>Save</button>
         </div>
       </div>
 
@@ -52,7 +72,7 @@
             <mat-form-field>
                 <mat-select #selectElem1 (selectionChange)="getCategory(selectElem1.value)"  placeholder="Select super category">
                     <mat-option *ngFor="let category of superCategoryModel" [value]="category._id">
-                      {{category.categoryName | titlecase}}
+                      {{category.categoryName }}
                     </mat-option>
                   </mat-select>
             </mat-form-field>
@@ -67,10 +87,17 @@
 
       <div class="col-md-12 mx-auto">
         <table mat-table [dataSource]="mainCategoryData" class="container-fluid">
+
+            
+            <ng-container matColumnDef="image">
+
+                <th mat-header-cell *matHeaderCellDef class="pageBoxLg-label"> Category Image</th>
+                <td mat-cell *matCellDef="let element">  <img [src]="element.mainCategoryImageName"  style="width: 180px; height: 145px;" /> </td>
+              </ng-container>
           <ng-container matColumnDef="categoryName">
 
             <th mat-header-cell *matHeaderCellDef class="pageBoxLg-label"> Category Name</th>
-            <td mat-cell *matCellDef="let element"> {{element.mainCategoryName | titlecase}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.mainCategoryName }} </td>
           </ng-container>
           <ng-container matColumnDef="description">
             <th mat-header-cell *matHeaderCellDef class="pageBoxLg-label"> Description</th>
@@ -85,7 +112,7 @@
           </ng-container>
           <ng-container matColumnDef="delete">
             <th mat-header-cell *matHeaderCellDef class="pageBoxLg-label"> Delete</th>
-            <td mat-cell *matCellDef="let element"> <button mat-icon-button mat-sm-button color="primary" (click)="deleteMainCategory(element)">
+            <td mat-cell *matCellDef="let element"> <button mat-icon-button mat-sm-button color="primary" (click)="deleteMainCategory(element._id, element.mainCategoryName)">
                 <mat-icon>delete</mat-icon>
               </button></td>
           </ng-container>

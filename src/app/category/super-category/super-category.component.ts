@@ -6,6 +6,7 @@ import {MatIconModule} from '@angular/material/icon';
 
 import {SuperCategory} from './superCategory.model';
 import {CategoryService} from '../category.service';
+import { copyStyles } from '@angular/animations/browser/src/util';
 export interface PeriodicElement {
   categoryName: string;
   description: string;
@@ -21,10 +22,19 @@ export class SuperCategoryComponent implements OnInit {
   superCategoryForm: FormGroup;
   superCategoryModel: SuperCategory;
   categoryFilter;
+  imageError: boolean;
   superCategoryFilter: SuperCategory[];
   superCategoryData;
   showCategoryName: boolean;
-  displayedColumns: string[] = ['categoryName', 'description', 'edit', 'delete'];
+  checKCategoryName: boolean;
+  displayedColumns: string[] = ['logo', 'categoryName', 'description', 'delete'];
+  fileLength;
+  fileToUpload;
+  urls = new Array<string>();
+  selecteValue: any = [];
+  reader: FileReader = new FileReader();
+  savedLength;
+  savedCategory: SuperCategory;
   constructor(private fb: FormBuilder, private router: Router, private categoryService: CategoryService ) { }
 
   ngOnInit() {
@@ -46,16 +56,54 @@ export class SuperCategoryComponent implements OnInit {
       this.superCategoryData = new MatTableDataSource<PeriodicElement>(data);
     });
   }
+  handleFileInput(images: any) {
+    this.fileToUpload = images;
+    this.imageError = false;
+    this.urls = [];
+    const files = images;
+    if (files) {
+      for (const file of files) {
+        this.reader = new FileReader();
+        this.reader.onload = (e: any) => {
+          this.urls.push(e.target.result);
+        };
+        this.reader.readAsDataURL(file);
+      }
+    }
+  }
   addSuperCategory() {
-    this.superCategoryModel = new SuperCategory(
-      this.superCategoryForm.controls.categoryName.value,
-      this.superCategoryForm.controls.description.value,
-    );
-    this.categoryService.addSuperCategory(this.superCategoryModel).subscribe(data => {
+    if (this.fileToUpload === undefined) {
+      this.imageError = true;
+    } else {
+      this.imageError = false;
+      this.superCategoryModel = new SuperCategory(
+        this.superCategoryForm.controls.categoryName.value,
+        this.superCategoryForm.controls.description.value,
+      );
+      this.categoryService.addSuperCategory(this.superCategoryModel).subscribe(data => {
+        this.superCategoryFilter = data;
+        this.superCategoryData = new MatTableDataSource<PeriodicElement>(data);
+        this.savedLength = data.length - 1;
+        this.savedCategory = data[this.savedLength];
+        console.log(this.savedCategory._id);
+        this.uploadImages(this.savedCategory._id);
+      });
+      this.superCategoryForm.reset();
+    }
+  }
+  uploadImages(id) {
+    const formData: any = new FormData();
+    this.fileLength = this.fileToUpload.length;
+    for (let i = 0; i <= this.fileLength; i++) {
+      formData.append('uploads[]', this.fileToUpload[i]);
+    }
+    this.categoryService.uploadImages(formData, id).subscribe(data => {
       this.superCategoryFilter = data;
       this.superCategoryData = new MatTableDataSource<PeriodicElement>(data);
+      this.urls = [];
+    }, error => {
+      console.log(error);
     });
-    /* this.superCategoryForm.reset(); */
   }
   deleteSuperCategory(value) {
     this.categoryService.deleteSuperCategory(value).subscribe(deleteData => {
@@ -64,12 +112,14 @@ export class SuperCategoryComponent implements OnInit {
     });
   }
   categoryVerify(val) {
-    this.categoryFilter = this.superCategoryFilter.filter(data => data.categoryName.indexOf(val) !== -1);
-    if (this.categoryFilter.length !== 0) {
-    this.showCategoryName = true;
-    } else if (this.categoryFilter.length === 0) {
-      this.showCategoryName = false;
-    }
+    this.superCategoryFilter.forEach(element => {
+      if (element.categoryName === val ) {
+        element.checkCategoryName = true;
+        this.checKCategoryName = true;
+      } else {
+        element.checkCategoryName = false;
+      }
+    });
   }
   edit(cat) {
     this.superCategoryFilter.map(category => {
