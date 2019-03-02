@@ -102,10 +102,12 @@
                           <strong>required</strong>
                         </mat-error>
                       </mat-form-field>
-                      <small *ngIf="showSkuError">
-                        SKU Code
-                        <strong>exists</strong>
-                      </small>
+                      <div *ngFor="let data of productDetail">
+                        <small *ngIf="data.skuCodeVerify">
+                          SKU Code
+                          <strong>exists</strong>
+                        </small>
+                      </div>
                     </div>
                     <div class="pb-1">
                       <mat-form-field class="example-full-width">

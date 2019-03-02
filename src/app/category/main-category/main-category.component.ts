@@ -41,7 +41,7 @@ export class MainCategoryComponent implements OnInit {
   savedLength;
   savedCategory: SuperCategory;
   imageError: boolean;
-  displayedColumns: string[] = ['image', 'categoryName', 'description', 'edit', 'delete'];
+  displayedColumns: string[] = ['image', 'categoryName', 'description',  'delete'];
   constructor(private fb: FormBuilder, private router: Router, private categoryService: CategoryService, private snackBar: MatSnackBar) { }
 
   ngOnInit() {

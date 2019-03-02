@@ -186,12 +186,14 @@ this.subCategoryName = subCategoryVal.subCategoryName;
     }
   }
   skuCodeVerify(elem) {
-    this.skuFilter = this.productDetail.filter(data => data.skuCode.indexOf(elem) !== -1);
-    if (this.skuFilter.length !== 0) {
-      this.showSkuError = true;
-    } else if (this.skuFilter.length === 0) {
-      this.showSkuError = false;
-    }
+
+    this.productDetail.forEach(element => {
+      if (element.skuCode === elem) {
+        element.skuCodeVerify = true;
+      } else {
+        element.skuCodeVerify = false;
+      }
+    });
   }
   validateProducts() {
     if (this.productForm.controls.productName.value === '' || this.fileToUpload === undefined ) {
@@ -217,8 +219,8 @@ this.subCategoryName = subCategoryVal.subCategoryName;
     // category
     this.productModel.subCategory = this.categories;
     // detials
-    this.productModel.styleCode = this.productForm.controls.styleCode.value;
-    this.productModel.skuCode = this.productForm.controls.skuCode.value;
+    this.productModel.styleCode = this.productForm.controls.styleCode.value.toUpperCase();
+    this.productModel.skuCode = this.productForm.controls.skuCode.value.toUpperCase();
     this.productModel.material = this.productForm.controls.material.value;
     this.productModel.brand = this.productForm.controls.brand.value;
     this.productModel.dimensions = this.productForm.controls.dimensions.value;

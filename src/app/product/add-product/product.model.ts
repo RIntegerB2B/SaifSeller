@@ -16,4 +16,5 @@ export class Product {
     weight: string;
     assembly: string;
     packageDetails: string;
+    skuCodeVerify: boolean;
 }

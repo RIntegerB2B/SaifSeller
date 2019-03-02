@@ -39,8 +39,9 @@ import {ProductService} from './product.service';
 import { ViewProductsComponent } from './view-products/view-products.component';
 import { ViewSingleProductComponent } from './view-single-product/view-single-product.component';
 import { EditProductComponent } from './edit-product/edit-product.component';
+import { UpperCaseDirective } from './add-product/upper-case.directive';
 @NgModule({
-  declarations: [AddProductComponent, ViewProductsComponent, ViewSingleProductComponent, EditProductComponent],
+  declarations: [AddProductComponent, ViewProductsComponent, ViewSingleProductComponent, EditProductComponent, UpperCaseDirective],
   imports: [
     HttpClientModule,
     ProductRoutingModule,
