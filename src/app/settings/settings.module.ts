@@ -39,6 +39,9 @@ import { AdsComponent } from './ads/ads.component';
 import { ViewAdsComponent } from './view-ads/view-ads.component';
 import { PromotionsComponent } from './promotions/promotions.component';
 import { ViewPromotionsComponent } from './view-promotions/view-promotions.component';
+import {FooterComponent} from './footer/footer.component';
+import {ViewFooterComponent} from './view-footer/view-footer.component';
+
 @NgModule({
   declarations: [
     BannersComponent,
@@ -46,7 +49,9 @@ import { ViewPromotionsComponent } from './view-promotions/view-promotions.compo
     AdsComponent,
     ViewAdsComponent,
     PromotionsComponent,
-    ViewPromotionsComponent
+    ViewPromotionsComponent,
+    FooterComponent,
+    ViewFooterComponent
   ],
   imports: [
     HttpClientModule,
@@ -72,6 +77,7 @@ import { ViewPromotionsComponent } from './view-promotions/view-promotions.compo
     MatProgressSpinnerModule,
     MatPaginatorModule,
     MatTableModule,
+    MatCheckboxModule
   ],
   providers:
    [

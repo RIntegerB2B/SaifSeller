@@ -8,6 +8,9 @@ import {AdsComponent} from './ads/ads.component';
 import {ViewAdsComponent} from './view-ads/view-ads.component';
 import {PromotionsComponent} from './promotions/promotions.component';
 import {ViewPromotionsComponent} from './view-promotions/view-promotions.component';
+import {FooterComponent} from './footer/footer.component';
+import {ViewFooterComponent} from './view-footer/view-footer.component';
+
 
 const routes: Routes = [{
   path: 'addbanners',
@@ -18,12 +21,12 @@ const routes: Routes = [{
   component: ViewBannersComponent
 },
 {
-  path: 'addads',
+  path: 'addhotproducts',
   component: AdsComponent
 },
 {
-  path: 'viewads',
-  component: ViewAdsComponent
+  path: 'viewhotproducts',
+  component: ViewAdsComponent   // Hot products
 },
 {
   path: 'addpromotions',
@@ -32,7 +35,15 @@ const routes: Routes = [{
 {
   path: 'viewpromotions',
   component: ViewPromotionsComponent
-}
+},
+{
+  path: 'footer',
+  component: FooterComponent
+},
+{
+  path: 'viewfooter',
+  component: ViewFooterComponent
+},
 ];
 
 @NgModule({

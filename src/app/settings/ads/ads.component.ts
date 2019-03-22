@@ -73,7 +73,7 @@ this.showImageNameError = true;
     }
   }
   addAds() {
-    this.message = 'Ads added';
+    this.message = 'Hot Products added';
     const formData: any = new FormData();
     this.fileLength = this.fileToUpload.length;
     for (let i = 0; i <= this.fileLength; i++) {
@@ -83,7 +83,7 @@ this.showImageNameError = true;
       this.snackBar.open(this.message, this.action, {
         duration: 2000,
       });
-      this.router.navigate(['settings/viewads']);
+      this.router.navigate(['settings/viewhotproducts']);
     }, error => {
       console.log(error);
     });

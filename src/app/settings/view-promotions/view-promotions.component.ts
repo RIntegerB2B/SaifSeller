@@ -5,7 +5,7 @@ import { MatPaginator, MatTableDataSource } from '@angular/material';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBar } from '@angular/material';
 
-import {Promotions} from '../promotions/promotions.model';
+import {Promotion} from '../promotions/promotion.model';
 import {SettingsService} from '../settings.service';
 
 export interface PeriodicElement {
@@ -21,8 +21,8 @@ export interface PeriodicElement {
 })
 export class ViewPromotionsComponent implements OnInit {
   viewPromotionForm: FormGroup;
-  promotinModel: Promotions;
-  displayedColumns: string[] = ['promotionTitle', 'promotionPosition',  'delete'];
+  promotinModel: Promotion;
+  displayedColumns: string[] = ['promotionTitle', 'promotionPosition', 'products', 'view', 'delete'];
   promotionData;
   message;
   action;
@@ -41,6 +41,7 @@ export class ViewPromotionsComponent implements OnInit {
   getPromotionDetails() {
     this.settingService.getPromotions().subscribe(data => {
       this.promotinModel = data;
+      console.log('promotions', data);
       this.promotionData = new MatTableDataSource<PeriodicElement>(data);
     }, err => {
       console.log(err);
@@ -56,5 +57,9 @@ export class ViewPromotionsComponent implements OnInit {
    }, err => {
      console.log(err);
    });
+  }
+  viewPromotions(data) {
+    console.log('single promotions', data);
+   this.router.navigate(['/settings/promotions', data._id]);
   }
 }

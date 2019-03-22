@@ -7,7 +7,9 @@ import { AppSetting } from '../config/appSetting';
 import {Banner} from './banners/banner.model';
 import {BannerImageData} from './banners/bannerImageData.model';
 import {Ads} from './ads/ads.model';
-import {Promotions} from './promotions/promotions.model';
+import {Promotion} from './promotions/promotion.model';
+import {Footer} from './footer/footer.model';
+import {Product} from '../product/add-product/product.model';
 
 @Injectable({
   providedIn: 'root'
@@ -53,20 +55,51 @@ export class SettingsService {
   }
 
   // promotions
-  addPromotions(data: Promotions): Observable<any> {
-    const categoryUrl = 'promotions';
-    const url: string = this.serviceUrl + categoryUrl;
-    return this.httpClient.post<Promotions>(url, data);
+  addPromotion(data): Observable<any> {
+    const footerUrl = 'promotions';
+    const url: string = this.serviceUrl + footerUrl ;
+    return this.httpClient.post<Promotion>(url, data);
   }
 
   getPromotions(): Observable<any> {
     const categoryUrl = 'promotions';
     const url: string = this.serviceUrl + categoryUrl;
-    return this.httpClient.get<Promotions>(url);
+    return this.httpClient.get<Promotion>(url);
   }
   deletePromotions(data): Observable<any> {
     const deleteUrl = 'deletepromotions/';
     const url: string = this.serviceUrl + deleteUrl + data._id ;
-    return this.httpClient.delete<Promotions>(url);
+    return this.httpClient.delete<Promotion>(url);
+  }
+
+  // footer
+
+  addFooterdetails(data: Footer): Observable<any> {
+    const footerUrl = 'footer/';
+    const url: string = this.serviceUrl + footerUrl ;
+    return this.httpClient.post<Footer>(url, data);
+  }
+  uploadLogo(data , id): Observable<any> {
+    const addUrl = 'createLogoImage/';
+    const url: string = this.serviceUrl + addUrl + id ;
+    return this.httpClient.put<boolean>(url, data);
+  }
+
+  getFooterDetails(): Observable<any> {
+    const categoryUrl = 'footerDetails';
+    const url: string = this.serviceUrl + categoryUrl;
+    return this.httpClient.get<Ads>(url);
+  }
+  updateFooterDetails(data , id): Observable<any> {
+    const addUrl = 'details/';
+    const url: string = this.serviceUrl + addUrl + id ;
+    return this.httpClient.put<Footer>(url, data);
+  }
+  // getProducts
+
+  getProducts(): Observable<any> {
+    const categoryUrl = 'product';
+    const url: string = this.serviceUrl + categoryUrl;
+    return this.httpClient.get<Product>(url);
   }
 }
