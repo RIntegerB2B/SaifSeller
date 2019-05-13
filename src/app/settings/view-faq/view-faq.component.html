@@ -1,0 +1,79 @@
+<div class="pageBoxLg ">
+  <div class="row">
+    <div class="col-md-2">
+      <label class="pageBoxLg-label ">FAQ Details</label>
+    </div>
+    <div class="col-md-4">
+      <a class="pageBoxLg-label " [routerLink]="['/settings/faq']">Add FAQ </a>
+    </div>
+  </div>
+
+ 
+    <div class="row">
+      <div class="col-md-9 pageBoxl" *ngFor="let data of faqModel" >
+        <div class="row" >
+          <div class="col-md-6 " >
+            <div class="form-group col-md-12">
+              <div class="form-group">
+                <label> <b>Details</b> </label>
+
+              </div>
+            </div>
+            <div class="form-group col-md-12">
+              <div class="form-group">
+                <label> FAQ Headings</label>
+
+              </div>
+
+            </div>
+            <div class="form-group col-md-12">
+              <div class="form-group">
+                <label>  Questions</label>
+
+              </div>
+
+            </div>
+            <div class="form-group col-md-12">
+              <div class="form-group">
+                <label>Answers</label>
+
+              </div>
+
+            </div>
+            
+           
+          </div>
+          <div class="col-md-6" >
+            <div >
+              <div class=" row">
+                <div class=" form-group col-md-6">Edit
+                    <button mat-icon-button mat-sm-button color="primary" matTooltip="Edit  Details" (click)="editFAQ(data)">
+                        <mat-icon> edit </mat-icon>
+                      </button>
+                </div>
+                <div class=" form-group col-md-6">Delete the details
+                    <button mat-icon-button mat-sm-button color="primary" matTooltip="Edit  Details" (click)="deleteFAQ(data)">
+                      <mat-icon> delete_sweep </mat-icon>
+                    </button>
+                  </div>
+              </div>
+              
+              <div class=" form-group col-md-12">
+                <b> {{data.faqHeading}}</b>
+              </div>
+              <div class=" form-group col-md-12" *ngFor="let val of data?.faqDetails">
+                <b> {{val.faqQuestion}}</b>
+              
+                <p>{{val.faqAnswers}}</p>
+              </div>
+              
+            </div>
+          
+          </div>
+        </div>
+
+      </div>
+     
+    
+    </div>
+</div>

@@ -1,0 +1,56 @@
+<div class="pageBoxLg">
+  <div class="container topAlignContainer ">
+    <form [formGroup]="faqForm">
+      <div  class="row">
+        <div >
+          <label class="pageBoxLg-label">Create FAQ</label>
+        </div>
+
+        <div  class="col-md-4">
+          <mat-form-field class="full-width">
+           <textarea matInput placeholder="FAQ Title" formControlName="faqHeading"></textarea>
+          </mat-form-field>
+        </div>
+       
+            
+        <div class="col-md-12"  formArrayName="faqs" >
+          <div  *ngFor="let account of faqForms.controls; let i=index" [formGroupName]="i">
+            <div class="row">
+                <div class="col-md-4"  >
+                    <mat-form-field class="full-width">
+                        <textarea matInput placeholder="FAQ Questions " formControlName="faqQuestion"></textarea>
+                    </mat-form-field>
+                  </div>
+                  <div  class="col-md-4">
+                    <mat-form-field class="full-width">
+                        <textarea matInput placeholder="FAQ Answers" formControlName="faqAnswers"></textarea>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-4">
+                    <a (click)="deleteFAQs(i)">
+                      <mat-icon>clear</mat-icon>
+                    </a>
+                  </div>
+            </div>
+         
+        
+      </div>
+    </div>
+    <div class="col-md-12">
+          <a (click)="addForm()">
+            <mat-icon class="gridEdit">add_box</mat-icon>
+          </a>
+          <p>Add New</p>
+        </div>
+        <div  >
+          <button mat-raised-button mat-button color="accent" type="button" (click)="cancel()">Cancel</button>
+
+          <span ></span>
+          <span ></span>
+
+          <button mat-raised-button type="button" color="primary" (click)="createPolicy()">Save</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<div class="pageBoxLg ">
+  <label class="pageBoxLg-label ">Add Support Details
+  </label>
+  <form [formGroup]="supportForm" novalidate style="padding-top:60px">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="form-group col-md-6">
+
+          <label> Details</label>
+          <div class="form-group col-md-12">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="WhatsApp Number" formControlName="whatsappNumber">
+            </mat-form-field>
+          </div>
+          <div class="form-group col-md-12">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Email Id" formControlName="emailId">
+            </mat-form-field>
+          </div>
+          <div class="form-group col-md-12">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Open Timings" formControlName="openTimings">
+            </mat-form-field>
+          </div>
+         <div>
+          <button mat-raised-button color="accent" type="submit" (click)="addSupportDetail()" [disabled]='!supportForm.valid'>Save</button>
+         </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
