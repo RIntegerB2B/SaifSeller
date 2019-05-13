@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { NavSidebarComponent } from './shared/nav-sidebar/nav-sidebar.component';
+<<<<<<< HEAD
+=======
+
+>>>>>>> f59a8fa992c45e6d70c0330af432e65d21e4dbeb
 const routes: Routes = [
   {
     path: '',
@@ -24,6 +28,7 @@ const routes: Routes = [
     {
       path: 'settings',
       loadChildren: './settings/settings.module#SettingsModule'
+<<<<<<< HEAD
     },
     {
       path: 'customers',
@@ -32,6 +37,8 @@ const routes: Routes = [
     {
       path: 'bookings',
       loadChildren: './booking-management/booking-management.module#BookingManagementModule'
+=======
+>>>>>>> f59a8fa992c45e6d70c0330af432e65d21e4dbeb
     }
     /* {
       path: 'shared',

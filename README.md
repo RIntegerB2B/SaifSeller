@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> f59a8fa992c45e6d70c0330af432e65d21e4dbeb
 # SaifSeller
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.2.
@@ -26,6 +29,9 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+<<<<<<< HEAD
 =======
 # SaifSeller
 >>>>>>> 750da471af3bc550dbb2fd3124016bb94d69f0b7
+=======
+>>>>>>> f59a8fa992c45e6d70c0330af432e65d21e4dbeb
