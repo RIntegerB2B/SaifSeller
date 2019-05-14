@@ -1,5 +1,7 @@
 
 export class Booking {
+   bookingId: string;
+   bookingDate: Date;
     customerId: string;
     products: [{
        productId: string,

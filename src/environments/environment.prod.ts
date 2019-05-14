@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  serviceUrl: 'http://localhost:3061/',
+  serviceUrl: 'https://sofacreator.com/adminservice/',
 };
