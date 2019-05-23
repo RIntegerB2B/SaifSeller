@@ -35,9 +35,10 @@ import {BookingManagementService} from './booking-management.service';
 import {BookingManagementRoutingModule} from './booking-management-routing.module';
 import { ViewBookingsComponent } from './view-bookings/view-bookings.component';
 import { ViewSingleBookingsComponent } from './view-single-bookings/view-single-bookings.component';
+import { ViewBulkRegistrationComponent } from './view-bulk-registration/view-bulk-registration.component';
 
 @NgModule({
-  declarations: [ViewBookingsComponent, ViewSingleBookingsComponent],
+  declarations: [ViewBookingsComponent, ViewSingleBookingsComponent, ViewBulkRegistrationComponent],
   imports: [
     HttpClientModule,
     CommonModule,

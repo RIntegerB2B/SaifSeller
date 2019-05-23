@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ReactiveFormsModule} from '@angular/forms';
+import { ServiceWorkerModule } from '@angular/service-worker';
 import { BannersComponent } from './banners/banners.component';
 import {
   MatSidenavModule,
@@ -32,6 +33,7 @@ import {
   MatTableModule,
 } from '@angular/material';
 import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
+import {environment} from '../../environments/environment';
 import {SettingsService} from './settings.service';
 import {SettingRoutingModule} from './setting-routing.module';
 import { ViewBannersComponent } from './view-banners/view-banners.component';
@@ -52,6 +54,7 @@ import { ViewFaqComponent } from './view-faq/view-faq.component';
 import { EditFaqComponent } from './edit-faq/edit-faq.component';
 import { TermsAndUseComponent } from './terms-and-use/terms-and-use.component';
 import { ViewTermsAndUseComponent } from './view-terms-and-use/view-terms-and-use.component';
+import { SubsrcibeComponent } from './subsrcibe/subsrcibe.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +76,8 @@ import { ViewTermsAndUseComponent } from './view-terms-and-use/view-terms-and-us
     ViewFaqComponent,
     EditFaqComponent,
     TermsAndUseComponent,
-    ViewTermsAndUseComponent
+    ViewTermsAndUseComponent,
+    SubsrcibeComponent
   ],
   imports: [
     HttpClientModule,
@@ -99,7 +103,8 @@ import { ViewTermsAndUseComponent } from './view-terms-and-use/view-terms-and-us
     MatProgressSpinnerModule,
     MatPaginatorModule,
     MatTableModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
   ],
   providers:
    [

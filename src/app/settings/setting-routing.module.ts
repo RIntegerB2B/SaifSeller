@@ -21,6 +21,7 @@ import {ViewFaqComponent} from './view-faq/view-faq.component';
 import {EditFaqComponent} from './edit-faq/edit-faq.component';
 import {TermsAndUseComponent} from './terms-and-use/terms-and-use.component';
 import {ViewTermsAndUseComponent} from './view-terms-and-use/view-terms-and-use.component';
+import {SubsrcibeComponent} from './subsrcibe/subsrcibe.component';
 
 
 
@@ -99,6 +100,10 @@ const routes: Routes = [{
 {
   path: 'viewtermsanduse',
   component: ViewTermsAndUseComponent
+},
+{
+  path: 'subscribe',
+  component: SubsrcibeComponent
 }
 ];
 

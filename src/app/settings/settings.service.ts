@@ -15,6 +15,7 @@ import {ContactUs} from './contact-us/contact-us.model';
 import {PrivacyPolicy} from './privacy-policy/privacy-policy.model';
 import {FAQ} from './faq/faq.model';
 import {TermsUse} from './terms-and-use/termsuse.model';
+import {Notification} from './subsrcibe/subscribe.model';
 
 @Injectable({
   providedIn: 'root'
@@ -215,4 +216,13 @@ const deleteUrl = 'terms/';
 const url: string = this.serviceUrl + deleteUrl + data;
 return this.httpClient.delete<FAQ>(url);
 }
+
+// subscribe
+addPushSubscriber(notificationModel: Notification): Observable<any> {
+  console.log('notification service call');
+  const notificationUrl = 'pushnotificationsubscribe';
+  const url: string = this.serviceUrl + notificationUrl;
+  return this.httpClient.post(url, notificationModel);
+}
+
 }

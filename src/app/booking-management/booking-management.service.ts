@@ -6,6 +6,7 @@ import { AppSetting } from '../config/appSetting';
 
 import {Booking} from './view-bookings/booking.model';
 import {Product} from '../product/add-product/product.model';
+import {BulkRegModel} from './view-bulk-registration/bulk.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -40,5 +41,13 @@ getAllBookings(): Observable<any> {
     const categoryUrl = 'statusupdate/' + id;
     const url: string = this.serviceUrl + categoryUrl;
     return this.httpClient.put<Product>(url, order);
+  }
+
+   // bulk registration
+
+   getBulkRegistration(): Observable<any> {
+    const categoryUrl = 'bulkregistration';
+    const url: string = this.serviceUrl + categoryUrl ;
+    return this.httpClient.get<BulkRegModel>(url);
   }
 }
